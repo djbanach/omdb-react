@@ -3,16 +3,34 @@ import './App.css';
 
 import { Movie } from "./Components/Movie";
 
-const API_KEY = "e5ed686b";
-const url = `http://www.omdbapi.com/?apikey=${API_KEY}&t=`;
-
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+  }
+
+  updateInputValue(e) {
+    this.setState({
+      value: e.target.value
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state.value);
+  }
+
+
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 class="title">Movie Descriptions</h1>
-            <Movie />
+          <div class="title">Movie Descriptions</div>
+          <div class="form-container">
+            <input type="text" value={this.state.value} onChange={e => this.updateInputValue(e)}></input>
+            <button onSubmit={this.handleSubmit}>submit</button>
+          </div>
         </header>
       </div>
     )
