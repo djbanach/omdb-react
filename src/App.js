@@ -2,37 +2,49 @@ import React  from 'react';
 import { Component } from 'react';
 import './App.css';
 
-/*import { Movie } from "./Components/Movie"; */
+const API_KEY = "e5ed686b";
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {inputValue: "", description: {}};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateInputValue = this.updateInputValue.bind(this);
+    /*const API_KEY = "e5ed686b";
+    const url = `http://www.omdbapi.com/?apikey=${API_KEY}&t=${this.state.value}`;*/
   }
 
+  
+
   updateInputValue(e) {
-    this.setState({value: e.target.value});
+    this.setState({inputValue: e.target.value});
   }
 
   handleSubmit(e) {
-    alert(this.state.value);
-    e.preventDefault();
+    this.getMovie();
+  }
+
+  /*componentDidMount() {
+    this.getMovies();
+  }*/
+
+  getMovie = _ => {
+    var url = `http://www.omdbapi.com/?t=${this.state.inputValue}&apikey=${API_KEY}`;
+    fetch(url)
+    .then(response => response.json())
+    .then(response => this.setState({description: response}))
+    .catch(err => console.error(err))
   }
 
 
-
-  render() {
+  render() {    
     return (
       <div className="App">
         <header className="App-header">
           <div>Movie Descriptions</div>
           <div>
-            <form onSubmit={this.handleSubmit}>
-              <input type="text" value={this.state.value} onChange={this.updateInputValue}></input>
-              <button>submit</button>
-            </form>
+              <input type="text" value={this.state.inputValue} onChange={this.updateInputValue}></input>
+              <button onClick={this.handleSubmit}>submit</button>
           </div>
         </header>
       </div>
