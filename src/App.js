@@ -24,7 +24,7 @@ class App extends Component {
 
 
   getMovie = _ => {
-    var url = `http://www.omdbapi.com/?t=${this.state.inputValue}&apikey=${API_KEY}`;
+    var url = `https://www.omdbapi.com/?t=${this.state.inputValue}&apikey=${API_KEY}`;
     fetch(url)
     .then(response => response.json())
     .then(response => this.setState({description: response}))
