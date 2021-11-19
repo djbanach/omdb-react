@@ -1,3 +1,9 @@
+# Movie API to interact with the OMDBAPI
+
+This app takes in a movie title in the search form as a parameter then the app uses the built in fetch function to reach out to http://www.omdbapi.com/?t=${MovieTitle}&apikey=${API_KEY} and then it formats the returning JSON to (Movie Title - Movie Year - Movie Rating) and displays it to the screen
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
