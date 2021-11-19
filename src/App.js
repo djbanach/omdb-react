@@ -49,7 +49,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <div>Movie Descriptions</div>
+          <div>Movie API</div>
           <div>
             <input type="text" value={this.state.inputValue} onChange={this.updateInputValue}></input>
             <button onClick={this.handleSubmit}>submit</button>
