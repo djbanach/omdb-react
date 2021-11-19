@@ -7,11 +7,9 @@ const API_KEY = "e5ed686b";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {inputValue: "", description: {}};
+    this.state = {inputValue: "", description: []};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateInputValue = this.updateInputValue.bind(this);
-    /*const API_KEY = "e5ed686b";
-    const url = `http://www.omdbapi.com/?apikey=${API_KEY}&t=${this.state.value}`;*/
   }
 
   
@@ -24,9 +22,6 @@ class App extends Component {
     this.getMovie();
   }
 
-  /*componentDidMount() {
-    this.getMovies();
-  }*/
 
   getMovie = _ => {
     var url = `http://www.omdbapi.com/?t=${this.state.inputValue}&apikey=${API_KEY}`;
@@ -36,6 +31,19 @@ class App extends Component {
     .catch(err => console.error(err))
   }
 
+  checkResponse(description){
+    if(this.state.description.Response==="True"){
+      return(
+        <div>
+          {this.state.description.Title} - {this.state.description.Year} - {this.state.description.Rated}
+        </div>
+      );
+   }
+     return (
+       <p>No Movie found</p>
+     );
+   }
+
 
   render() {    
     return (
@@ -43,8 +51,16 @@ class App extends Component {
         <header className="App-header">
           <div>Movie Descriptions</div>
           <div>
-              <input type="text" value={this.state.inputValue} onChange={this.updateInputValue}></input>
-              <button onClick={this.handleSubmit}>submit</button>
+            <input type="text" value={this.state.inputValue} onChange={this.updateInputValue}></input>
+            <button onClick={this.handleSubmit}>submit</button>
+          </div>
+          <br/>
+          <div>
+            Movie Description:
+          </div>
+          <br/>
+          <div>
+            {this.checkResponse(this.state.description.Response)}
           </div>
         </header>
       </div>
